@@ -10,6 +10,11 @@ export class LoadingScene extends Scene {
 
   preload(): void {
     this.load.baseURL = 'assets/';
+
+    this.load.spritesheet('tiles_spr', 'tilemaps/tiles/dungeon-16-16.png', {
+      frameWidth: 16,
+      frameHeight: 16,
+    });    
     
     this.load.image('tiles', 'tilemaps/tiles/dungeon-16-16.png');
     this.load.tilemapTiledJSON('dungeon', 'tilemaps/json/dungeons-01.tmj');    

@@ -1,4 +1,12 @@
 { "compressionlevel":-1,
+ "editorsettings":
+    {
+     "export":
+        {
+         "format":"json",
+         "target":"dungeons-01.tmj"
+        }
+    },
  "height":18,
  "infinite":false,
  "layers":[
@@ -32,6 +40,53 @@
          "y":0
         }, 
         {
+         "draworder":"topdown",
+         "id":3,
+         "name":"Chests",
+         "objects":[
+                {
+                 "class":"",
+                 "height":0,
+                 "id":1,
+                 "name":"ChestPoint",
+                 "point":true,
+                 "rotation":0,
+                 "visible":true,
+                 "width":0,
+                 "x":246,
+                 "y":50.5
+                }, 
+                {
+                 "class":"",
+                 "height":0,
+                 "id":2,
+                 "name":"ChestPoint",
+                 "point":true,
+                 "rotation":0,
+                 "visible":true,
+                 "width":0,
+                 "x":23,
+                 "y":239
+                }, 
+                {
+                 "class":"",
+                 "height":0,
+                 "id":3,
+                 "name":"ChestPoint",
+                 "point":true,
+                 "rotation":0,
+                 "visible":true,
+                 "width":0,
+                 "x":250.5,
+                 "y":239.5
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
+        }, 
+        {
          "data":[227, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 4, 228,
             259, 34, 34, 34, 34, 34, 34, 34, 34, 34, 34, 34, 34, 34, 34, 35, 36, 260,
             258, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 257,
@@ -60,8 +115,8 @@
          "x":0,
          "y":0
         }],
- "nextlayerid":3,
- "nextobjectid":1,
+ "nextlayerid":4,
+ "nextobjectid":4,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.9.2",
