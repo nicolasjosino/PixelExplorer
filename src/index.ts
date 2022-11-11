@@ -1,7 +1,7 @@
 import { Menu } from "./scenes/start/index";
 import { UIScene } from "./scenes/ui/index";
 import { Game, Types } from "phaser";
-import { Level1, LoadingScene } from "./scenes";
+import { Level1 } from "./scenes";
 
 const gameConfig: Types.Core.GameConfig = {
   title: "Phaser game tutorial",
