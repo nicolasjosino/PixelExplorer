@@ -12,17 +12,42 @@ export class Level1 extends Scene {
   private groundLayer!: Tilemaps.TilemapLayer;
   private chests!: Phaser.GameObjects.Sprite[];
   private enemies!: Phaser.GameObjects.Sprite[];
+  private stairsLayer!: Tilemaps.ObjectLayer;
 
   constructor() {
     super("level-1-scene");
   }
 
   create(): void {
+    console.log("level1 scene loaded");
     this.initMap();
+    this.initStairs();
     this.player = new Player(this, 25, 100);
     this.initChests();
     this.initEnemies();
+    // this.initStairs();
     this.physics.add.collider(this.player, this.wallsLayer);
+  }
+
+  preload() {
+    this.load.baseURL = "assets/";
+    // this.load.image("menu-screen", "tilemaps/menu-screen.png");
+
+    this.load.spritesheet("tiles_spr", "tilemaps/tiles/dungeon-16-16.png", {
+      frameWidth: 16,
+      frameHeight: 16,
+    });
+
+    this.load.image("tiles", "tilemaps/tiles/dungeon-16-16.png");
+    this.load.tilemapTiledJSON("dungeon", "tilemaps/json/dungeons-01.tmj");
+
+    this.load.image("king", "sprites/king.png");
+    this.load.image("king", "sprites/king.png");
+    this.load.atlas(
+      "a-king",
+      "spritesheets/a-king.png",
+      "spritesheets/a-king_atlas.json"
+    );
   }
 
   update() {
@@ -30,13 +55,21 @@ export class Level1 extends Scene {
   }
 
   private initMap(): void {
-    this.map = this.make.tilemap(({ key: "dungeon", tileWidth: 16, tileHeight: 16 }));
+    this.map = this.make.tilemap({
+      key: "dungeon",
+      tileWidth: 16,
+      tileHeight: 16,
+    });
     this.tileset = this.map.addTilesetImage("dungeon", "tiles");
     this.groundLayer = this.map.createLayer("Ground", this.tileset, 0, 0);
     this.wallsLayer = this.map.createLayer("Walls", this.tileset, 0, 0);
     this.wallsLayer.setCollisionByProperty({ collides: true });
-    this.physics.world.setBounds(0, 0, this.wallsLayer.width, this.wallsLayer.height);
-    // this.showDebugWalls();
+    this.physics.world.setBounds(
+      0,
+      0,
+      this.wallsLayer.width,
+      this.wallsLayer.height
+    );
   }
 
   private initChests(): void {
@@ -71,6 +104,19 @@ export class Level1 extends Scene {
       (obj1 as Player).getDamage(1);
     });
   }
+
+  initStairs() {
+    this.stairsLayer = this.map.getObjectLayer("Stairs");
+    this.stairsLayer.objects.map((stairs) => {
+      this.physics.add.sprite(stairs.x!, stairs.y!, "tiles_spr", 357);
+    });
+  }
+
+  // initStairs() {
+  //   this.stairs = this.map.createFromObjects("Stairs", {
+  //     id: 9,
+  //   });
+  // }
 
   private showDebugWalls(): void {
     const debugGraphics = this.add.graphics().setAlpha(0.7);
