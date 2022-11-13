@@ -85,21 +85,15 @@
          "objects":[
                 {
                  "class":"",
-                 "gid":358,
-                 "height":16,
-                 "id":9,
-                 "name":"StairsObj",
-                 "properties":[
-                        {
-                         "name":"collides",
-                         "type":"bool",
-                         "value":true
-                        }],
+                 "height":0,
+                 "id":16,
+                 "name":"StairsPoint",
+                 "point":true,
                  "rotation":0,
                  "visible":true,
-                 "width":16,
-                 "x":275.166666666667,
-                 "y":245.5
+                 "width":0,
+                 "x":277.658632562715,
+                 "y":236.222331529759
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -160,7 +154,7 @@
          "y":0
         }],
  "nextlayerid":7,
- "nextobjectid":16,
+ "nextobjectid":17,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.9.2",

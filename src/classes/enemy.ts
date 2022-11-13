@@ -4,7 +4,7 @@ import { Player } from "./player";
 
 export class Enemy extends Actor {
   private target: Player;
-  private AGRESSOR_RADIUS = 105;
+  private AGRESSOR_RADIUS = 120;
 
   constructor(
     scene: Phaser.Scene,

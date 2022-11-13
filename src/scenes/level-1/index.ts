@@ -12,6 +12,7 @@ export class Level1 extends Scene {
   private groundLayer!: Tilemaps.TilemapLayer;
   private chests!: Phaser.GameObjects.Sprite[];
   private enemies!: Phaser.GameObjects.Sprite[];
+  private stairs!: Phaser.GameObjects.Sprite[];
   private stairsLayer!: Tilemaps.ObjectLayer;
 
   constructor() {
@@ -21,17 +22,16 @@ export class Level1 extends Scene {
   create(): void {
     console.log("level1 scene loaded");
     this.initMap();
-    this.initStairs();
     this.player = new Player(this, 25, 100);
+    this.initStairs();
+    // this.initStairsPt();
     this.initChests();
     this.initEnemies();
-    // this.initStairs();
     this.physics.add.collider(this.player, this.wallsLayer);
   }
 
   preload() {
     this.load.baseURL = "assets/";
-    // this.load.image("menu-screen", "tilemaps/menu-screen.png");
 
     this.load.spritesheet("tiles_spr", "tilemaps/tiles/dungeon-16-16.png", {
       frameWidth: 16,
@@ -40,6 +40,7 @@ export class Level1 extends Scene {
 
     this.load.image("tiles", "tilemaps/tiles/dungeon-16-16.png");
     this.load.tilemapTiledJSON("dungeon", "tilemaps/json/dungeons-01.tmj");
+    // this.load.tilemapTiledJSON("dungeon", "tilemaps/json/dg-01-point.tmj");
 
     this.load.image("king", "sprites/king.png");
     this.load.image("king", "sprites/king.png");
@@ -105,10 +106,34 @@ export class Level1 extends Scene {
     });
   }
 
-  initStairs() {
+  private initStairs() {
     this.stairsLayer = this.map.getObjectLayer("Stairs");
     this.stairsLayer.objects.map((stairs) => {
       this.physics.add.sprite(stairs.x!, stairs.y!, "tiles_spr", 357);
+    });
+    this.physics.world.collideSpriteVsTilemapLayer(this.player, this.wallsLayer, (test) => {console.log("teste");
+    })
+  }
+
+  private initStairsPt() {
+    const stairsPoints = gameObjectsToObjectPoints(
+      this.map.filterObjects("Stairs", (obj) => obj.name === "StairsPoint")
+    );
+    this.stairs = stairsPoints.map((stairsPoint) =>
+      this.physics.add.sprite(stairsPoint.x, stairsPoint.y, "tiles_spr", 357)
+    );
+    this.physics.add.collider(this.player, this.stairs, (obj1, obj2) => {
+      console.warn('Stairs Reached!');
+      ;
+    });
+  }
+
+  private reachStairs() {
+    const stairsObj = this.map.createFromObjects("Stairs", {
+      id: 9,
+    });
+    this.physics.add.collider(this.player, stairsObj, () => {
+      console.log("stairs reached!");
     });
   }
 

@@ -1,17 +1,16 @@
-import { Text } from "./../../classes/text";
 import { Scene } from "phaser";
-import { EventEmitter } from "stream";
-import { on } from "events";
+import { Text } from "./../../classes/text";
 export class Menu extends Scene {
-  private text!: Text;
+  private title!: Text;
   constructor() {
     super("menu-scene");
   }
 
   create(): void {
-    this.add.image(250, 250, "menu");
-    this.text = this.add.text(185, 150, "Pixel Explorer");
-    const playBtt = this.add.text(230, 170, "Play");
+    this.add.image(144, 144, "menu");
+    this.title = this.add.text(65, 60, "Pixel Explorer");
+    this.title.setStyle({ fontSize: "calc(100vw / 40)", });
+    const playBtt = this.add.text(120, 90, "Play");
     playBtt.setInteractive();
     playBtt.on("pointerdown", () => {
       this.scene.start("level-1-scene");
