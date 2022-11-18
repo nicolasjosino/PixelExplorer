@@ -1,4 +1,4 @@
-import { GameObjects, Scene, Tilemaps } from "phaser";
+import { Scene, Tilemaps } from "phaser";
 import { Player } from "../../classes/player";
 import { gameObjectsToObjectPoints } from "../../helpers/gameobject-to-object-point";
 import { EVENTS_NAME } from "../../consts";
@@ -10,10 +10,9 @@ export class Level1 extends Scene {
   private tileset!: Tilemaps.Tileset;
   private wallsLayer!: Tilemaps.TilemapLayer;
   private groundLayer!: Tilemaps.TilemapLayer;
+  private stairsLayer!: Tilemaps.TilemapLayer;
   private chests!: Phaser.GameObjects.Sprite[];
   private enemies!: Phaser.GameObjects.Sprite[];
-  private stairs!: Phaser.GameObjects.Sprite[];
-  private stairsLayer!: Tilemaps.ObjectLayer;
 
   constructor() {
     super("level-1-scene");
@@ -23,11 +22,11 @@ export class Level1 extends Scene {
     console.log("level1 scene loaded");
     this.initMap();
     this.player = new Player(this, 25, 100);
-    this.initStairs();
-    // this.initStairsPt();
     this.initChests();
     this.initEnemies();
     this.physics.add.collider(this.player, this.wallsLayer);
+    this.physics.add.collider(this.player, this.stairsLayer, () => { console.log("deu");
+    })
   }
 
   preload() {
@@ -39,7 +38,7 @@ export class Level1 extends Scene {
     });
 
     this.load.image("tiles", "tilemaps/tiles/dungeon-16-16.png");
-    this.load.tilemapTiledJSON("dungeon", "tilemaps/json/dungeons-01.tmj");
+    this.load.tilemapTiledJSON("dungeon", "tilemaps/json/dg00.tmj");
     // this.load.tilemapTiledJSON("dungeon", "tilemaps/json/dg-01-point.tmj");
 
     this.load.image("king", "sprites/king.png");
@@ -63,6 +62,10 @@ export class Level1 extends Scene {
     });
     this.tileset = this.map.addTilesetImage("dungeon", "tiles");
     this.groundLayer = this.map.createLayer("Ground", this.tileset, 0, 0);
+
+    this.stairsLayer = this.map.createLayer("Stairs", this.tileset, 0, 0);
+    this.stairsLayer.setCollisionByProperty({ collides: true });    
+
     this.wallsLayer = this.map.createLayer("Walls", this.tileset, 0, 0);
     this.wallsLayer.setCollisionByProperty({ collides: true });
     this.physics.world.setBounds(
@@ -106,42 +109,28 @@ export class Level1 extends Scene {
     });
   }
 
-  private initStairs() {
-    this.stairsLayer = this.map.getObjectLayer("Stairs");
-    this.stairsLayer.objects.map((stairs) => {
-      this.physics.add.sprite(stairs.x!, stairs.y!, "tiles_spr", 357);
-    });
-    this.physics.world.collideSpriteVsTilemapLayer(this.player, this.wallsLayer, (test) => {console.log("teste");
-    })
-  }
-
-  private initStairsPt() {
-    const stairsPoints = gameObjectsToObjectPoints(
-      this.map.filterObjects("Stairs", (obj) => obj.name === "StairsPoint")
-    );
-    this.stairs = stairsPoints.map((stairsPoint) =>
-      this.physics.add.sprite(stairsPoint.x, stairsPoint.y, "tiles_spr", 357)
-    );
-    this.physics.add.collider(this.player, this.stairs, (obj1, obj2) => {
-      console.warn('Stairs Reached!');
-      ;
-    });
-  }
-
   private reachStairs() {
-    const stairsObj = this.map.createFromObjects("Stairs", {
-      id: 9,
-    });
-    this.physics.add.collider(this.player, stairsObj, () => {
-      console.log("stairs reached!");
-    });
+
   }
 
-  // initStairs() {
-  //   this.stairs = this.map.createFromObjects("Stairs", {
-  //     id: 9,
-  //   });
-  // }
+  private initStairs() {
+    // this.stairs = this.map.createFromObjects("Stairs", {
+    //   id: 9,
+    //   scene: this,
+    //   key: "tiles_spr",
+    //   frame: 357,
+    //   // classType: ArcadeSprite,
+    // });
+
+    // this.stairsLayer = this.map.getObjectLayer("Stairs");
+    // this.stairsLayer.objects.forEach((item) => {
+    //   this.renderStairs(item);
+    // });
+
+    // console.log(this.map.getObjectLayerNames());
+    // // console.log(this.stairs[0]);
+    // console.log(this.player);
+  }
 
   private showDebugWalls(): void {
     const debugGraphics = this.add.graphics().setAlpha(0.7);
