@@ -8,8 +8,8 @@ export class Menu extends Scene {
 
   create(): void {
     this.add.image(144, 144, "menu");
-    this.title = this.add.text(65, 60, "Pixel Explorer");
-    this.title.setStyle({ fontSize: "calc(100vw / 40)", });
+    this.title = this.add.text(50, 60, "Pixel Explorer");
+    this.title.setStyle({ fontSize: "calc(100vw / 20)",});
     const playBtt = this.add.text(120, 90, "Play");
     playBtt.setInteractive();
     playBtt.on("pointerdown", () => {
