@@ -1,3 +1,4 @@
+import { RandomLevel } from './scenes/levels/index';
 import { Menu } from "./scenes/start/index";
 import { UIScene } from "./scenes/ui/index";
 import { Game, Types } from "phaser";
@@ -33,7 +34,7 @@ const gameConfig: Types.Core.GameConfig = {
   audio: {
     disableWebAudio: false,
   },
-  scene: [Menu, Level1, UIScene],
+  scene: [Menu, Level1, UIScene, RandomLevel],
 };
 
 window.sizeChanged = () => {
