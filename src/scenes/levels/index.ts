@@ -22,7 +22,6 @@ export class RandomLevel extends Scene {
   }
 
   create(): void {
-    console.log("random level scene loaded");
     console.log("level " + this.levelData.count);
 
     this.initMap();
@@ -129,10 +128,8 @@ export class RandomLevel extends Scene {
 
   private reachStairs() {
     if (this.levelData.count == 5) {
-      console.log("GAME OVER");
       this.game.scene.remove("level-scene");
       this.game.scene.start("end-scene");
-      // this.game.scene.bringToTop("end-scene");
       this.game.scene.remove("ui-scene");
     } else {
     this.scene.restart(this.levelData);

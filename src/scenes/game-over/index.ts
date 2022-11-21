@@ -21,6 +21,5 @@ export class GameOver extends Scene {
   preload(): void {
     this.load.baseURL = "assets/tilemaps/";
     this.load.image("menu", "menu-screen.png");
-    console.log("end game scene loaded");
   }
 }

@@ -19,7 +19,6 @@ export class Level1 extends Scene {
   }
 
   create(): void {
-    console.log("level1 scene loaded");
     this.initMap();
     this.player = new Player(this, 25, 100);
     this.initChests();
