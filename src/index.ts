@@ -1,3 +1,4 @@
+import { HowToPlay } from './scenes/how-to-play/index';
 import { RandomLevel } from './scenes/levels/index';
 import { Menu } from "./scenes/start/index";
 import { UIScene } from "./scenes/ui/index";
@@ -31,7 +32,7 @@ const gameConfig: Types.Core.GameConfig = {
   audio: {
     disableWebAudio: false,
   },
-  scene: [Menu, Level1, UIScene, RandomLevel, GameOver],
+  scene: [Menu, HowToPlay, Level1, UIScene, RandomLevel, GameOver],
 };
 
 const game = new Game(gameConfig);

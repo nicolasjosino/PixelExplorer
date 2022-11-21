@@ -19,11 +19,18 @@ export class Menu extends Scene {
       this.scene.start("level1-scene");
       this.scene.start("ui-scene");
     });
+
+    const howToBtt = this.add.text(90, img.y/1.2, "How to play");
+    howToBtt.setInteractive();
+    howToBtt.on("pointerover", () => { howToBtt.setStyle({ fill: "yellow"}) })
+    howToBtt.on("pointerout", () => { howToBtt.setStyle({ fill: "white"}) })
+    howToBtt.on("pointerdown", () => {
+      this.scene.start("how-to-scene"); 
+    });
   }
 
   preload(): void {
     this.load.baseURL = "assets/tilemaps/";
     this.load.image("menu", "menu-screen.png");
-    console.log("menu scene loaded");
   }
 }
