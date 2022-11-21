@@ -5,7 +5,7 @@ export enum ScoreOperations {
   SET_VALUE,
 }
 export class Score extends Text {
-  private scoreValue: number;
+  public scoreValue: number;
   constructor(scene: Phaser.Scene, x: number, y: number, initScore = 0) {
     super(scene, x, y, `Score: ${initScore}`);
     scene.add.existing(this);

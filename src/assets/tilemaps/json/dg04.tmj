@@ -133,20 +133,8 @@
                  "rotation":0,
                  "visible":true,
                  "width":0,
-                 "x":165.279770444763,
-                 "y":173.97870573133
-                }, 
-                {
-                 "class":"",
-                 "height":0,
-                 "id":18,
-                 "name":"EnemyPoint",
-                 "point":true,
-                 "rotation":0,
-                 "visible":true,
-                 "width":0,
-                 "x":196.160990712074,
-                 "y":190.941629540134
+                 "x":167.019557502076,
+                 "y":206.164766291626
                 }, 
                 {
                  "class":"",

@@ -3,6 +3,7 @@ import { Menu } from "./scenes/start/index";
 import { UIScene } from "./scenes/ui/index";
 import { Game, Types } from "phaser";
 import { Level1 } from "./scenes";
+import { GameOver } from './scenes';
 
 const gameConfig: Types.Core.GameConfig = {
   title: "Phaser game tutorial",
@@ -34,7 +35,7 @@ const gameConfig: Types.Core.GameConfig = {
   audio: {
     disableWebAudio: false,
   },
-  scene: [Menu, Level1, UIScene, RandomLevel],
+  scene: [Menu, Level1, UIScene, RandomLevel, GameOver],
 };
 
 window.sizeChanged = () => {

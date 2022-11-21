@@ -63,7 +63,7 @@ export class Level1 extends Scene {
     this.groundLayer = this.map.createLayer("Ground", this.tileset, 0, 0);
 
     this.stairsLayer = this.map.createLayer("Stairs", this.tileset, 0, 0);
-    this.stairsLayer.setCollisionByProperty({ collides: true });    
+    this.stairsLayer.setCollisionByProperty({ collides: true });
 
     this.wallsLayer = this.map.createLayer("Walls", this.tileset, 0, 0);
     this.wallsLayer.setCollisionByProperty({ collides: true });
@@ -109,9 +109,9 @@ export class Level1 extends Scene {
   }
 
   private reachStairs() {
-    this.game.scene.remove("level1-scene")
-    this.game.scene.start("level-scene");   
-    this.game.scene.bringToTop("ui-scene"); 
+    this.game.scene.remove("level1-scene");
+    this.game.scene.start("level-scene");
+    this.game.scene.bringToTop("ui-scene");
   }
 
   private showDebugWalls(): void {

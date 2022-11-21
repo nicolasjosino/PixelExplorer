@@ -3,7 +3,7 @@ import { Player } from "../../classes/player";
 import { gameObjectsToObjectPoints } from "../../helpers/gameobject-to-object-point";
 import { EVENTS_NAME } from "../../consts";
 import { Enemy } from "../../classes/enemy";
-import { LevelData } from "../../classes/LevelData";
+import { LevelData } from "../../classes/levelData";
 
 export class RandomLevel extends Scene {
   private player!: Player;
@@ -23,6 +23,8 @@ export class RandomLevel extends Scene {
 
   create(): void {
     console.log("random level scene loaded");
+    console.log("level " + this.levelData.count);
+
     this.initMap();
     this.player = new Player(this, 25, 100);
     this.initChests();
@@ -34,7 +36,6 @@ export class RandomLevel extends Scene {
   }
 
   preload() {
-    console.log("preload random");
     this.checkLevelData();
     this.load.baseURL = "assets/";
 
@@ -44,7 +45,10 @@ export class RandomLevel extends Scene {
     });
 
     this.load.image("tiles", "tilemaps/tiles/dungeon-16-16.png");
-    this.load.tilemapTiledJSON(`dungeon${this.levelNumber}`, `tilemaps/json/dg${this.levelNumber}.tmj`);
+    this.load.tilemapTiledJSON(
+      `dungeon${this.levelNumber}`,
+      `tilemaps/json/dg${this.levelNumber}.tmj`
+    );
 
     this.load.image("king", "sprites/king.png");
     this.load.image("king", "sprites/king.png");
@@ -53,7 +57,6 @@ export class RandomLevel extends Scene {
       "spritesheets/a-king.png",
       "spritesheets/a-king_atlas.json"
     );
-    console.log("finish preload");
   }
 
   update() {
@@ -64,14 +67,8 @@ export class RandomLevel extends Scene {
     if (this.levelData == undefined) {
       this.levelData = new LevelData();
     }
-    
-    if (this.levelData.count == 5) {
-      console.log("GAME OVER");
-      this.scene.pause("level-scene");
-    } else {
-      var randNumber = Math.floor((Math.random() * this.levelData.levels.length));
-      this.levelNumber = this.levelData.levels.splice(randNumber, 1)[0];
-    }
+    var randNumber = Math.floor(Math.random() * this.levelData.levels.length);
+    this.levelNumber = this.levelData.levels.splice(randNumber, 1)[0];
     this.levelData.count++;
   }
 
@@ -131,10 +128,15 @@ export class RandomLevel extends Scene {
   }
 
   private reachStairs() {
-    // console.log(this.scene.settings.data);
-
+    if (this.levelData.count == 5) {
+      console.log("GAME OVER");
+      this.game.scene.remove("level-scene");
+      this.game.scene.start("end-scene");
+      // this.game.scene.bringToTop("end-scene");
+      this.game.scene.remove("ui-scene");
+    } else {
     this.scene.restart(this.levelData);
-    console.log("teste");
+    }
   }
 
   private showDebugWalls(): void {

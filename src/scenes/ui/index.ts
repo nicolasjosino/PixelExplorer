@@ -19,6 +19,10 @@ export class UIScene extends Scene {
     this.initListeners();
   }
 
+  update(): void {
+    this.data.set('score', this.score.scoreValue)
+  }
+
   private initListeners(): void {
     this.game.events.on(EVENTS_NAME.chestLoot, this.chestLootHandler, this);
   }
