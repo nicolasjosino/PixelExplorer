@@ -1,4 +1,4 @@
-export class levelData extends Object {
+export class LevelData extends Object {
     public levels!: string[];
     public count!: integer;
     

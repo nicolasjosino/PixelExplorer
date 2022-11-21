@@ -3,7 +3,7 @@ import { Player } from "../../classes/player";
 import { gameObjectsToObjectPoints } from "../../helpers/gameobject-to-object-point";
 import { EVENTS_NAME } from "../../consts";
 import { Enemy } from "../../classes/enemy";
-import { levelData } from "../../classes/levelData";
+import { LevelData } from "../../classes/LevelData";
 
 export class RandomLevel extends Scene {
   private player!: Player;
@@ -14,8 +14,8 @@ export class RandomLevel extends Scene {
   private stairsLayer!: Tilemaps.TilemapLayer;
   private chests!: Phaser.GameObjects.Sprite[];
   private enemies!: Phaser.GameObjects.Sprite[];
-  private lvlData!: levelData;
-  private lvlNumber!: string;
+  private levelData!: LevelData;
+  private levelNumber!: string;
 
   constructor() {
     super("level-scene");
@@ -35,7 +35,7 @@ export class RandomLevel extends Scene {
 
   preload() {
     console.log("preload random");
-    this.checkLvlData();
+    this.checkLevelData();
     this.load.baseURL = "assets/";
 
     this.load.spritesheet("tiles_spr", "tilemaps/tiles/dungeon-16-16.png", {
@@ -44,7 +44,7 @@ export class RandomLevel extends Scene {
     });
 
     this.load.image("tiles", "tilemaps/tiles/dungeon-16-16.png");
-    this.load.tilemapTiledJSON(`dungeon${this.lvlNumber}`, `tilemaps/json/dg${this.lvlNumber}.tmj`);
+    this.load.tilemapTiledJSON(`dungeon${this.levelNumber}`, `tilemaps/json/dg${this.levelNumber}.tmj`);
 
     this.load.image("king", "sprites/king.png");
     this.load.image("king", "sprites/king.png");
@@ -60,24 +60,24 @@ export class RandomLevel extends Scene {
     this.player.update();
   }
 
-  private checkLvlData(): void {
-    if (this.lvlData == undefined) {
-      this.lvlData = new levelData();
+  private checkLevelData(): void {
+    if (this.levelData == undefined) {
+      this.levelData = new LevelData();
     }
     
-    if (this.lvlData.count == 5) {
+    if (this.levelData.count == 5) {
       console.log("GAME OVER");
       this.scene.pause("level-scene");
     } else {
-      var randNumber = Math.floor((Math.random() * this.lvlData.levels.length));
-      this.lvlNumber = this.lvlData.levels.splice(randNumber, 1)[0];
+      var randNumber = Math.floor((Math.random() * this.levelData.levels.length));
+      this.levelNumber = this.levelData.levels.splice(randNumber, 1)[0];
     }
-    this.lvlData.count++;
+    this.levelData.count++;
   }
 
   private initMap(): void {
     this.map = this.make.tilemap({
-      key: `dungeon${this.lvlNumber}`,
+      key: `dungeon${this.levelNumber}`,
       tileWidth: 16,
       tileHeight: 16,
     });
@@ -133,7 +133,7 @@ export class RandomLevel extends Scene {
   private reachStairs() {
     // console.log(this.scene.settings.data);
 
-    this.scene.restart(this.lvlData);
+    this.scene.restart(this.levelData);
     console.log("teste");
   }
 
