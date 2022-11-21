@@ -1,8 +1,3 @@
-interface Window {
-  sizeChanged: () => void;
-  game: Phaser.Game;
-}
-
 type ObjectPoint = {
   height: number;
   id: number;

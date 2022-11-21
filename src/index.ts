@@ -12,8 +12,8 @@ const gameConfig: Types.Core.GameConfig = {
   backgroundColor: "#351f1b",
   scale: {
     mode: Phaser.Scale.ScaleModes.NONE,
-    width: window.innerWidth,
-    height: window.innerHeight,
+    width: 600,
+    height: 400,
   },
   physics: {
     default: "arcade",
@@ -25,11 +25,7 @@ const gameConfig: Types.Core.GameConfig = {
     antialiasGL: false,
     pixelArt: true,
   },
-  callbacks: {
-    postBoot: () => {
-      window.sizeChanged();
-    },
-  },
+  callbacks: {},
   canvasStyle: `display: block; width: 100%; height: 100%;`,
   autoFocus: true,
   audio: {
@@ -38,17 +34,4 @@ const gameConfig: Types.Core.GameConfig = {
   scene: [Menu, Level1, UIScene, RandomLevel, GameOver],
 };
 
-window.sizeChanged = () => {
-  if (window.game.isBooted) {
-    setTimeout(() => {
-      window.game.scale.resize(window.innerWidth, window.innerHeight);
-      window.game.canvas.setAttribute(
-        "style",
-        `display: block; width: ${window.innerWidth}px; height: ${window.innerHeight}px;`
-      );
-    }, 100);
-  }
-};
-window.onresize = () => window.sizeChanged();
-
-window.game = new Game(gameConfig);
+const game = new Game(gameConfig);
