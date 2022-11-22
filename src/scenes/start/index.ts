@@ -7,8 +7,7 @@ export class Menu extends Scene {
   create(): void {
     const img = this.add.image(144, 144, "menu");
 
-    const title = this.add.text(60, img.y/2, "Pixel Explorer");
-    title.setInteractive();
+    const title = this.add.text((img.x/2) - 13, (img.y/2), "Pixel Explorer");
     title.setStyle({ fontSize: "20px" });
 
     const playBtt = this.add.text(120, img.y/1.5, "Play");
@@ -20,7 +19,7 @@ export class Menu extends Scene {
       this.scene.start("ui-scene");
     });
 
-    const howToBtt = this.add.text(90, img.y/1.2, "How to play");
+    const howToBtt = this.add.text(90, img.y/1.25, "How to play");
     howToBtt.setInteractive();
     howToBtt.on("pointerover", () => { howToBtt.setStyle({ fill: "yellow"}) })
     howToBtt.on("pointerout", () => { howToBtt.setStyle({ fill: "white"}) })
