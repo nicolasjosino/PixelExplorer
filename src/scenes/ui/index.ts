@@ -5,12 +5,16 @@ import { EVENTS_NAME } from "../../consts";
 export class UIScene extends Scene {
   private score!: Score;
   private chestLootHandler: () => void;
+  private enemyKillHandler: () => void;
 
   constructor() {
     super("ui-scene");
     this.chestLootHandler = () => {
       this.score.changeValue(ScoreOperations.INCREASE, 10);
     };
+    this.enemyKillHandler = () => {
+      this.score.changeValue(ScoreOperations.INCREASE, 20);
+    }
   }
 
   create(): void {
@@ -25,5 +29,6 @@ export class UIScene extends Scene {
 
   private initListeners(): void {
     this.game.events.on(EVENTS_NAME.chestLoot, this.chestLootHandler, this);
+    this.game.events.on(EVENTS_NAME.kill, this.enemyKillHandler, this);
   }
 }

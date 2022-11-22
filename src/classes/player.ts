@@ -1,3 +1,4 @@
+import { EVENTS_NAME } from "../consts";
 import { Actor } from "./actor";
 export class Player extends Actor {
   private keyW: Phaser.Input.Keyboard.Key;
@@ -5,6 +6,7 @@ export class Player extends Actor {
   private keyS: Phaser.Input.Keyboard.Key;
   private keyD: Phaser.Input.Keyboard.Key;
   private cursors: any;
+  private keySpace: Phaser.Input.Keyboard.Key;
   constructor(scene: Phaser.Scene, x: number, y: number) {
     super(scene, x, y, "king");
     // KEYS
@@ -13,6 +15,11 @@ export class Player extends Actor {
     this.keyS = this.scene.input.keyboard.addKey("S");
     this.keyD = this.scene.input.keyboard.addKey("D");
     this.cursors = this.scene.input.keyboard.createCursorKeys();
+    this.keySpace = this.scene.input.keyboard.addKey(32);
+    this.keySpace.on('down', (event: KeyboardEvent) => {
+      this.anims.play('attack', true);
+      this.scene.game.events.emit(EVENTS_NAME.attack);
+    });
     // PHYSICS
     this.getBody().setSize(30, 30);
     this.getBody().setOffset(8, 0);
