@@ -8,8 +8,9 @@ export class HowToPlay extends Scene {
         const img = this.add.image(144, 144, "menu");
 
         const directions = this.add.text(20, img.y/2, "WASD/Arrow keys - Movement");
+        const attack = this.add.text(20, img.y/1.5, "Space - Attack");
 
-        const playBtt = this.add.text(120, img.y/1.5, "Play");
+        const playBtt = this.add.text(120, img.y/1.2, "Play");
         playBtt.setInteractive();
         playBtt.on("pointerover", () => { playBtt.setStyle({ fill: "yellow"}) })
         playBtt.on("pointerout", () => { playBtt.setStyle({ fill: "white"}) })
