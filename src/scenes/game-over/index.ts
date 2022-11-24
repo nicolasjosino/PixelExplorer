@@ -3,7 +3,6 @@ import { Scene } from "phaser";
 
 export class GameOver extends Scene {
   private finalScore!: Score;
-  private victory!: boolean;
   constructor() {
     super("end-scene");
   }
@@ -28,7 +27,10 @@ export class GameOver extends Scene {
 
     const playAgain = this.add.text(img.x / 2 + 25, img.y / 1.2, "Play again");
     playAgain.setStyle({ fontSize: "15px" });
-    playAgain.setInteractive().on("pointerdown", () => {
+    playAgain.setInteractive();
+    playAgain.on("pointerover", () => { playAgain.setStyle({ fill: "yellow"}) })
+    playAgain.on("pointerout", () => { playAgain.setStyle({ fill: "white"}) })
+    playAgain.on("pointerdown", () => {
       this.restartGame();
     });
   }
