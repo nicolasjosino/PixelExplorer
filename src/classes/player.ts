@@ -16,8 +16,8 @@ export class Player extends Actor {
     this.keyD = this.scene.input.keyboard.addKey("D");
     this.cursors = this.scene.input.keyboard.createCursorKeys();
     this.keySpace = this.scene.input.keyboard.addKey(32);
-    this.keySpace.on('down', (event: KeyboardEvent) => {
-      this.anims.play('attack', true);
+    this.keySpace.on("down", (event: KeyboardEvent) => {
+      this.anims.play("attack", true);
       this.scene.game.events.emit(EVENTS_NAME.attack);
     });
     // PHYSICS

@@ -81,7 +81,7 @@ export class Level1 extends Scene {
     this.chests = chestPoints.map((chestPoint) =>
       this.physics.add
         .sprite(chestPoint.x, chestPoint.y, "tiles_spr", 595)
-        .setScale(1.5)
+        .setScale(1.25)
     );
     this.chests.forEach((chest) => {
       this.physics.add.overlap(this.player, chest, (obj1, obj2) => {
@@ -102,8 +102,11 @@ export class Level1 extends Scene {
     );
     this.physics.add.collider(this.enemies, this.wallsLayer);
     this.physics.add.collider(this.enemies, this.enemies);
-    this.physics.add.collider(this.player, this.enemies, (obj1, obj2) => {
-      (obj1 as Player).getDamage(1);
+    this.physics.add.collider(this.player, this.enemies, () => {
+      this.game.scene.remove("level1-scene");
+      this.game.scene.remove("ui-scene");
+      this.game.scene.getScene("end-scene").data.set("victory", false);
+      this.game.scene.start("end-scene");
     });
   }
 

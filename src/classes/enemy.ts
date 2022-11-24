@@ -30,7 +30,7 @@ export class Enemy extends Actor {
         Phaser.Math.Distance.BetweenPoints(
           { x: this.x, y: this.y },
           { x: this.target.x, y: this.target.y }
-        ) < this.target.width
+        ) < this.target.width - 20
       ) {
         this.getDamage();
         this.disableBody(true, false);
