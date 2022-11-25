@@ -2,6 +2,7 @@ import { Scene, Tilemaps } from "phaser";
 import { Player } from "../../classes/player";
 import { gameObjectsToObjectPoints } from "../../helpers/gameobject-to-object-point";
 import { EVENTS_NAME } from "../../consts";
+import { enemiesArray } from "../../consts";
 import { Enemy } from "../../classes/enemy";
 
 export class Level1 extends Scene {
@@ -96,7 +97,14 @@ export class Level1 extends Scene {
       this.map.filterObjects("Enemies", (obj) => obj.name === "EnemyPoint")
     );
     this.enemies = enemiesPoints.map((enemyPoint) =>
-      new Enemy(this, enemyPoint.x, enemyPoint.y, "tiles_spr", this.player, 375)
+      new Enemy(
+        this,
+        enemyPoint.x,
+        enemyPoint.y,
+        "tiles_spr",
+        this.player,
+        enemiesArray[Math.floor(Math.random() * enemiesArray.length)]
+      )
         .setName(enemyPoint.id.toString())
         .setScale(1.5)
     );

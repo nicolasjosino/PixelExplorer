@@ -3,3 +3,5 @@ export enum EVENTS_NAME {
   attack = 'attack',
   kill = 'kill',
 }
+
+export const enemiesArray = [183, 375, 439, 503];

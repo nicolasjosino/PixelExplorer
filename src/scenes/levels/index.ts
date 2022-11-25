@@ -2,6 +2,7 @@ import { Scene, Tilemaps } from "phaser";
 import { Player } from "../../classes/player";
 import { gameObjectsToObjectPoints } from "../../helpers/gameobject-to-object-point";
 import { EVENTS_NAME } from "../../consts";
+import { enemiesArray } from "../../consts";
 import { Enemy } from "../../classes/enemy";
 import { LevelData } from "../../classes/levelData";
 
@@ -114,8 +115,16 @@ export class RandomLevel extends Scene {
     const enemiesPoints = gameObjectsToObjectPoints(
       this.map.filterObjects("Enemies", (obj) => obj.name === "EnemyPoint")
     );
+    
     this.enemies = enemiesPoints.map((enemyPoint) =>
-      new Enemy(this, enemyPoint.x, enemyPoint.y, "tiles_spr", this.player, 375)
+      new Enemy(
+        this,
+        enemyPoint.x,
+        enemyPoint.y,
+        "tiles_spr",
+        this.player,
+        enemiesArray[Math.floor(Math.random() * enemiesArray.length)]
+      )
         .setName(enemyPoint.id.toString())
         .setScale(1.5)
     );
@@ -127,7 +136,7 @@ export class RandomLevel extends Scene {
   }
 
   private reachStairs() {
-    if (this.levelData.count == 1) {
+    if (this.levelData.count == 5) {
       this.endGame(true);
     } else {
       this.scene.restart(this.levelData);

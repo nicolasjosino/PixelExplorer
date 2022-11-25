@@ -5,7 +5,7 @@ import { EVENTS_NAME } from "../consts";
 
 export class Enemy extends Actor {
   private target: Player;
-  private AGRESSOR_RADIUS = 120;
+  private AGRESSOR_RADIUS = 200;
   private attackHandler: () => void;
 
   constructor(
