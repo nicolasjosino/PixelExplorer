@@ -7,8 +7,8 @@ export class Menu extends Scene {
   create(): void {
     const img = this.add.image(144, 144, "menu");
 
-    const title = this.add.text((img.x/2) - 13, (img.y/2), "Pixel Explorer");
-    title.setStyle({ fontSize: "20px" });
+    const title = this.add.text((img.x/2)-12, (img.y/2.4), "Pixel Explorer");
+    title.setStyle({ fontSize: "20px", stroke: "black", strokeThickness: 3 });
 
     const playBtt = this.add.text(120, img.y/1.5, "Play");
     playBtt.setInteractive();
@@ -23,9 +23,14 @@ export class Menu extends Scene {
     howToBtt.setInteractive();
     howToBtt.on("pointerover", () => { howToBtt.setStyle({ fill: "yellow"}) })
     howToBtt.on("pointerout", () => { howToBtt.setStyle({ fill: "white"}) })
-    howToBtt.on("pointerdown", () => {
-      this.scene.start("how-to-scene"); 
-    });
+    howToBtt.on("pointerdown", () => { this.scene.start("how-to-scene") });
+
+    const madeBy = this.add.text(img.x/1.30, img.y+80, "GitHub");
+    madeBy.setFontSize(15);
+    madeBy.setInteractive();
+    madeBy.on("pointerover", () => { madeBy.setStyle({ fill: "yellow"}) })
+    madeBy.on("pointerout", () => { madeBy.setStyle({ fill: "white"}) })
+    madeBy.on("pointerdown", () => { window.open("https://github.com/nicolasjosino/PixelExplorer/")})
   }
 
   preload(): void {
