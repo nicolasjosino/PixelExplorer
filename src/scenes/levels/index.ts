@@ -37,6 +37,8 @@ export class RandomLevel extends Scene {
 
   preload() {
     this.checkLevelData();
+    this.game.scene.getScene("ui-scene").data.set("level", this.levelData.count + 1);
+
     this.load.baseURL = "assets/";
 
     this.load.spritesheet("tiles_spr", "tilemaps/tiles/dungeon-16-16.png", {
@@ -136,7 +138,7 @@ export class RandomLevel extends Scene {
   }
 
   private reachStairs() {
-    if (this.levelData.count == 5) {
+    if (this.levelData.count == 4) {
       this.endGame(true);
     } else {
       this.scene.restart(this.levelData);

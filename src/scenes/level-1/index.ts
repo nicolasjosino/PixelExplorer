@@ -26,11 +26,12 @@ export class Level1 extends Scene {
     this.initEnemies();
     this.physics.add.collider(this.player, this.wallsLayer);
     this.physics.add.collider(this.player, this.stairsLayer, () => { this.reachStairs();
-    })
+    });
   }
 
   preload() {
     this.load.baseURL = "assets/";
+    this.game.scene.getScene("ui-scene").data.set("level", 1);
 
     this.load.spritesheet("tiles_spr", "tilemaps/tiles/dungeon-16-16.png", {
       frameWidth: 16,

@@ -4,6 +4,7 @@ import { EVENTS_NAME } from "../../consts";
 
 export class UIScene extends Scene {
   private score!: Score;
+  private currentLevel!: Phaser.GameObjects.Text;
   private chestLootHandler: () => void;
   private enemyKillHandler: () => void;
 
@@ -21,10 +22,14 @@ export class UIScene extends Scene {
     this.score = new Score(this, 20, 20, 0);
     this.score.setStyle({ fontSize: "12px" });
     this.initListeners();
+
+    this.currentLevel = this.add.text(230, 3, "");
+    this.currentLevel.setStyle(this.score.style);
   }
 
   update(): void {
-    this.data.set('score', this.score.scoreValue)
+    this.data.set('score', this.score.scoreValue);
+    this.currentLevel.setText(`Level ${this.data.get("level")}`)
   }
 
   private initListeners(): void {
