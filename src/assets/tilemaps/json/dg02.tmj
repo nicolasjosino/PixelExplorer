@@ -135,6 +135,18 @@
                  "width":0,
                  "x":127.004455183871,
                  "y":63.9371743562637
+                }, 
+                {
+                 "class":"",
+                 "height":0,
+                 "id":30,
+                 "name":"EnemyPoint",
+                 "point":true,
+                 "rotation":0,
+                 "visible":true,
+                 "width":0,
+                 "x":170.934078381031,
+                 "y":222.257796571774
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -172,7 +184,7 @@
          "y":0
         }],
  "nextlayerid":9,
- "nextobjectid":30,
+ "nextobjectid":31,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.9.2",

@@ -68,18 +68,6 @@
                 {
                  "class":"",
                  "height":0,
-                 "id":1,
-                 "name":"ChestPoint",
-                 "point":true,
-                 "rotation":0,
-                 "visible":true,
-                 "width":0,
-                 "x":247.568828815223,
-                 "y":126.221588763875
-                }, 
-                {
-                 "class":"",
-                 "height":0,
                  "id":18,
                  "name":"ChestPoint",
                  "point":true,
@@ -123,6 +111,18 @@
                  "width":0,
                  "x":206.599713055954,
                  "y":215.298648342521
+                }, 
+                {
+                 "class":"",
+                 "height":0,
+                 "id":19,
+                 "name":"EnemyPoint",
+                 "point":true,
+                 "rotation":0,
+                 "visible":true,
+                 "width":0,
+                 "x":237.480933323265,
+                 "y":91.3388205089481
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -160,7 +160,7 @@
          "y":0
         }],
  "nextlayerid":9,
- "nextobjectid":19,
+ "nextobjectid":20,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.9.2",
