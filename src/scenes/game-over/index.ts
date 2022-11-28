@@ -17,32 +17,23 @@ export class GameOver extends Scene {
     const message = this.add.text(img.x / 2 + 18, img.y / 2, endGameMessage);
     message.setStyle({
       fontSize: "20px",
-      stroke: "black",
-      strokeThickness: 5,
-      fill: messageColor,
+      strokeThickness: 4,
+      stroke: messageColor,
     });
 
-    const finalScore = this.add.text(img.x / 2 + 35, (img.y / 1.5) + 5, `Score: ${this.finalScore}`);
-    finalScore.setStyle({ fontSize: "15px" });
+    const finalScore = this.add.text(img.x / 2 + 22, (img.y / 1.5) + 5, `Score: ${this.finalScore}`);
+    finalScore.setStyle({ fontSize: "12px"});
 
-    const playAgain = this.add.text(img.x / 2 + 25, img.y / 1.2, "Play again");
-    playAgain.setStyle({ fontSize: "15px" });
+    const playAgain = this.add.text(img.x / 2 + 22, img.y / 1.2, "Play again");
+    playAgain.setStyle({ fontSize: "12px" });
     playAgain.setInteractive();
     playAgain.on("pointerover", () => { playAgain.setStyle({ fill: "yellow"}) })
     playAgain.on("pointerout", () => { playAgain.setStyle({ fill: "white"}) })
-    playAgain.on("pointerdown", () => {
-      this.restartGame();
-    });
+    playAgain.on("pointerdown", () => { location.reload(); });
   }
 
   preload(): void {
     this.load.baseURL = "assets/tilemaps/";
     this.load.image("menu", "menu-screen.png");
-  }
-
-  private restartGame(): void {
-    // this.game.scene.remove("end-scene");
-    // this.game.scene.remove("menu-scene");
-    // this.game.scene.bringToTop("menu-scene");
   }
 }
