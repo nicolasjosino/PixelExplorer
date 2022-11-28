@@ -74,8 +74,32 @@
                  "rotation":0,
                  "visible":true,
                  "width":0,
-                 "x":247.568828815223,
-                 "y":126.221588763875
+                 "x":238,
+                 "y":57.5
+                }, 
+                {
+                 "class":"",
+                 "height":0,
+                 "id":2,
+                 "name":"ChestPoint",
+                 "point":true,
+                 "rotation":0,
+                 "visible":true,
+                 "width":0,
+                 "x":23,
+                 "y":239
+                }, 
+                {
+                 "class":"",
+                 "height":0,
+                 "id":3,
+                 "name":"ChestPoint",
+                 "point":true,
+                 "rotation":0,
+                 "visible":true,
+                 "width":0,
+                 "x":234,
+                 "y":239.5
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -97,8 +121,8 @@
                  "rotation":0,
                  "visible":true,
                  "width":0,
-                 "x":147.639205618062,
-                 "y":124.881220267311
+                 "x":182,
+                 "y":94
                 }],
          "opacity":1,
          "type":"objectgroup",
